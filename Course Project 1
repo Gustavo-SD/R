@@ -1,0 +1,122 @@
+* This is the Homework (Course Project 1) by Data_analisys course.
+
+* The PNG files was create by separate R code file (`plot1.R`, `plot2.R`, etc.) 
+
+The four plots constructed are shown below. 
+
+
+## Plot 1
+
+## R code
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Data <- read.csv('C:/Users/GUSTAVO/Desktop/Data analisys/Taller 1/data1.csv', header=TRUE , se= ";", colClasses = c("character" ,"character" ,"numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
+
+head(Data)
+str(Data)
+date <- paste(Data[,1],Data[,2],sep=" "); head(date)
+d<- cbind(date,Data[,-c(1,2)]); head(d)
+
+d$date <- as.POSIXct(strptime(d$date, 
+                                    format="%d/%m/%Y %H:%M:%S"))
+library(datasets)
+
+hist(d$Global_active_power, col="green", xlab=expression("Global active power (Kilowatts)"), main="Global active power")
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+
+### Plot 2
+R code
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Data <- read.csv('C:/Users/GUSTAVO/Desktop/Data analisys/Taller 1/data1.csv', header=TRUE , se= ";", colClasses = c("character" ,"character" ,"numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
+date <- paste(Data[,1],Data[,2],sep=" "); head(date)
+d<- cbind(date,Data[,-c(1,2)]); head(d)
+
+d$date <- as.POSIXct(strptime(d$date, 
+                              format="%d/%m/%Y %H:%M:%S"))
+
+
+library(datasets)
+plot(d[,1],d[,2], type = "l")
+plot(d[,1],d[,2],type="l",ylab=expression("Global active power (Kilowatts)"),xlab=" ", main="Global active power")
+
+
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+
+
+### Plot 3
+
+R code
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+Data <- read.csv('C:/Users/GUSTAVO/Desktop/Data analisys/Taller 1/data1.csv', header=TRUE , se= ";", colClasses = c("character" ,"character" ,"numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
+date <- paste(Data[,1],Data[,2],sep=" "); head(date)
+d<- cbind(date,Data[,-c(1,2)]); head(d)
+
+d$date <- as.POSIXct(strptime(d$date, 
+                              format="%d/%m/%Y %H:%M:%S"))
+
+
+library(datasets)
+y1<- d[,6]
+y2<- d[,7]
+y3<- d[,8]
+
+
+plot(d[,1],y1, type = "l" ,ylab="Energy Sub metering",xlab=" ", main="")
+lines(d[,1],y2,type="l",col="red")
+lines(d[,1],y3,type="l",col="blue", ylab="Energy Sub metering", xlab=" ", main="")
+legend("topright",       c("Sub_metering_1","Sub metering_2","Sub metering_3"), col= c("black","red","blue")  , lty=1, cex=0.8)
+
+par(new=TRUE)
+plot(d[,1],d[,7], col = "red",ylab="",xlab=" ", main="")
+par(new=TRUE)
+plot(d[,1],d[,8], type = "l", col = "blue",ylab=expression("Energy Sub metering"),xlab=" ", main="")
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+
+
+### Plot 4
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Data <- read.csv('C:/Users/GUSTAVO/Desktop/Data analisys/Taller 1/data1.csv', header=TRUE , se= ";", colClasses = c("character" ,"character" ,"numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
+date <- paste(Data[,1],Data[,2],sep=" "); head(date)
+d<- cbind(date,Data[,-c(1,2)]); head(d)
+
+d$date <- as.POSIXct(strptime(d$date, 
+                              format="%d/%m/%Y %H:%M:%S"))
+
+
+library(datasets)
+y1<- d[,6]
+y2<- d[,7]
+y3<- d[,8]
+y4<- d[,4]
+y5<- d[,3]
+par(mfrow=c(2,2), mar=c(5,4,2,1))
+
+#Plot1
+plot(d[,1],d[,2],type="l",ylab=expression("Global active power (Kilowatts)"),xlab=" ", main="Global active power")
+#plot2
+plot(d[,1],y4, type = "l" ,ylab="Voltage",xlab="date/time ", main="")
+#Plot3
+
+plot(d[,1],y1, type = "l" ,ylab="Energy Sub metering",xlab=" ", main="")
+lines(d[,1],y2,type="l",col="red")
+lines(d[,1],y3,type="l",col="blue", ylab="Energy Sub metering", xlab=" ", main="")
+legend("topright",       c("Sub_metering_1","Sub metering_2","Sub metering_3"), col= c("black","red","blue")  , lty=1, cex=0.1)
+
+
+
+#plot#4
+plot(d[,1],y5, type = "l" ,ylab="Global_reactive_power",xlab="date/time ", main="")
+
+
+_________________________________________________________________________________________________________________________________________________________________________________________________________________________
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
+
